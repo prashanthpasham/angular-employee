@@ -1,0 +1,40 @@
+<div class="col-md-6 offset-md-3 jumbotron">
+    <h3>Add Employee</h3>
+   <h5 style="color: red;">{{employ.message}}</h5>
+     <form #empForm="ngForm" (ngSubmit) = "empForm.form.valid && onSubmit(empForm)">
+    <div class="form-group">
+    <label> Email Id </label>
+    <input type="email" class="form-control" id="emailId" [(ngModel)]="employ.emailId" name="emailId"  #email="ngModel"
+    [ngClass]="{ 'is-invalid': empForm.submitted && email.invalid,'is-valid':empForm.submitted && email.valid }" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+    <div class="invalid-feedback" *ngIf="empForm.submitted && email.invalid">
+        <div *ngIf="email.errors?.required">Email is required</div>
+        <div *ngIf="email.errors?.pattern">Must be a valid email address</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="form-group">
+    <label> First Name </label>
+    <input type="text" class="form-control" id="firstName" [(ngModel)]="employ.firstName" name="firstName" 
+    #first="ngModel" required [ngClass]="{ 'is-invalid': empForm.submitted && first.invalid,'is-valid':empForm.submitted && first.valid }">
+    <div class="invalid-feedback" *ngIf="empForm.submitted && first.invalid">
+        <div *ngIf="first.errors?.required">FirstName is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+    <label> Last Name </label>
+    <input type="text" class="form-control" id="lastName" [(ngModel)]="employ.lastName" name="lastName" 
+     #lastName="ngModel" required [ngClass]="{ 'is-invalid': empForm.submitted && lastName.invalid,'is-valid':empForm.submitted && lastName.valid }">
+    <div class="invalid-feedback" *ngIf="empForm.submitted && lastName.invalid">
+        <div *ngIf="lastName.errors?.required">LastName is required</div>
+        </div>
+    </div>
+    <br/>    
+    <div class="form-group">
+
+    <button class="btn btn-success" type="submit">Submit</button>
+    </div>
+    </form>
+    </div>
+    

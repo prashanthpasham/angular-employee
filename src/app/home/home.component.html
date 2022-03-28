@@ -1,0 +1,117 @@
+<style>
+    .theme1{
+        margin-top:20px;
+        background-color: red;
+    }
+</style>
+
+<!--<div class="form-group" [ngClass]="{'theme1':true}">
+ <select [(ngModel)]="theme">
+<option value="white">Change Theme</option>
+<option value="red">Red</option>
+<option value="green">Green</option>
+<option value="grey">Grey</option>
+
+</select>
+
+</div>
+<h3>Switch Example:</h3>
+<div class='row' [ngSwitch]="theme">  
+    <div *ngSwitchCase="'red'">Red Selected</div>  
+    <div *ngSwitchCase="'grey'">Grey  Selected</div>  
+    <div *ngSwitchCase="'green'">Green Selected</div> 
+    <div *ngSwitchDefault>Default Selected</div>  
+</div>  
+
+<div  [ngStyle]="{'background-color':theme,'margin-top.px':40}">
+
+
+<input type="text" placeholder="search" [(ngModel)]="searchFilter">
+<br/>
+<table class="table table-bordered col-md-8">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Salary</th>
+        <th>Annual Salary</th>
+    </tr>
+    <tr appHlight *ngFor="let cust of data|arrayFilter:searchFilter;let i = index;trackBy:trackByName">
+        <td>{{cust.id}}</td>
+        <td>{{cust.name}}</td>
+        <td>{{cust.address}}</td>
+        <td>{{cust.salary}}</td>
+        <td>{{cust.salary | annualsalary}}</td>
+    </tr>
+    
+</table>
+
+{{fruits| sort:'descending'}}
+<br/>
+<input type="text" [(ngModel)]="searchTxt" placeholder="search">
+<br/>
+<li  *ngFor="let fruit of fruits|filter:searchTxt">
+    {{fruit | reverse}}
+</li>
+{{today|date:'dd-MM-yyyy HH:mm:ss a'}}
+
+{{homeMessage}}
+
+<button (click)="handleClick()">Pass Parent</button>-->
+<div style="display: none;">
+<div class="container-fluid col-md-5">
+    <h3>Calculate EMI</h3>
+<div class="form-group">
+    <label>Principal Amount</label>
+    <input type="number" class="form-control" [(ngModel)]="principal">
+</div>
+<div class="form-group">
+    <label>Rate of Interest Annual(%)</label>
+    <input type="number" class="form-control" [(ngModel)]="interest">
+</div>
+<div class="form-group">
+    <label>Tenure in Months</label>
+    <input type="number" min="0" max="240" class="form-control" [(ngModel)]="tenure">
+</div><br/>
+<div class="form-group">
+    <button type="submit" class="btn btn-success" (click)="emiCalculator()">Calculate</button>
+</div>
+</div>
+<br/>
+<div >
+<table class=" table-striped table-bordered container-fluid col-md-12">
+    
+    <tr>
+    <th>EMI Date</th>  
+    <th>Pricipal Component(A)</th>
+    <th>Interest Component(B)</th>
+    <th>EMI(A+B)</th>
+    <th>Balance</th>
+    </tr>
+    <tr *ngFor="let inst of installments">
+        <td>{{inst.date|date:'dd-MM-yyyy'}}</td>
+       <td>{{inst.pc|number:'1.2-2'}}</td>
+        <td>{{inst.ic|number:'1.2-2'}}</td>
+        <td>{{inst.emi|number}}</td>
+        <td>{{inst.bal|number:'1.2-2'}}</td>
+        </tr>
+        <tr style="background-color: aquamarine;">
+            <td>Sum Totals</td>
+            <td>{{totalPc|number:'1.2-2'}}</td>
+            <td>{{totalIc|number:'1.2-2'}}</td>
+            <td>{{totalEmi|number:'1.2-2'}}</td>
+            <td>0</td>
+        </tr>
+</table>
+</div>
+<br/>
+</div>
+
+<div  class="home">
+   
+    </div>
+
+
+
+
+

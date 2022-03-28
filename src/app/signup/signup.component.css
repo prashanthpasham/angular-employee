@@ -1,0 +1,10 @@
+.home {
+    width: 100%;
+    top: 55px;
+    left: 0;
+    height: 100%;
+    background-size: cover;
+    position: fixed;
+    background-image: url("../../assets/employee.png");
+  }
+  

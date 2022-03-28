@@ -1,0 +1,99 @@
+<div class="home">
+
+<div class="col-sm-8 col-md-4 container-fluid" style="padding-top: 110px;" >
+    <div class="card-body bg-light">
+    <h3>Login</h3>
+    <h3 style="color:red">{{login.message}}</h3>
+    <div class="row bg-light">
+    <div class="col-sm-12 ">
+    <form class="form-horizontal" #loginForm="ngForm" [formGroup]="formGroup" (validSubmit)="onSubmit()">
+    <div class="form-group">
+    <label class="control-label col-sm-2">Email</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" formControlName="EmailId" [(ngModel)]="login.emailId">
+    </div>
+    </div>
+    <div class="form-group">
+    <label class="control-label col-sm-2">Password</label>
+    <div class="col-sm-10">
+    <input type="password" class="form-control" formControlName="Password" [(ngModel)]="login.password">
+    </div>
+    </div>
+   
+    <br>
+    <button class="btn btn-secondary my-5 my-sm-0 mr-sm-2" type="button"(click)="onReset()">Reset</button>
+   &nbsp;&nbsp;
+    <button class="btn btn-primary my-5 my-sm-0 mr-sm-2" type="submit">Submit</button>  &nbsp;&nbsp;
+    <button class="btn btn-info my-5 my-sm-0 mr-sm-2" (click)="moveToRegister()">Register</button> &nbsp;&nbsp;
+    <br/>
+    <a (click)="openDialog()" style="color: blue;cursor: pointer;">Forgot Password?</a>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':dialog?'block':'none','margin-top.px':80}" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+              
+            </div>
+           <div class="modal-body">
+             <div *ngIf="!isValid">
+
+            
+               <form #fLogin="ngForm" (ngSubmit)="fLogin.form.valid && checkEmail(fLogin)">
+                  
+                   <div class="form-group">
+                       <label for="email">Email</label>
+                       <div class="invalid-feedback2" style="color: red;" *ngIf="fLogin.submitted && email.invalid">
+                        <div *ngIf="email.errors?.required">Email is required</div>
+                        <div *ngIf="email.errors?.pattern">Must be a valid email address</div>
+                      </div>
+                       <div class="row col-md-12">
+                          <div class="col-md-8">
+                            <input type="email" class="form-control" [(ngModel)]="emailId" #email="ngModel" id="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
+                        </div>
+                            <div class="col-md-4">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                       </div>
+                       
+                       
+                   </div>
+                  
+               </form>
+              </div>
+              <div *ngIf="isValid">
+                <form class="form-horizontal" #fform="ngForm" [formGroup]="fpGroup" (validSubmit)="onResetPwd()">
+                  <div class="form-group">
+                    <label class="control-label col-sm-6">New Password</label>
+                    <div class="col-sm-10">
+                    <input type="password" class="form-control" formControlName="NewPassword" [(ngModel)]="newpassword">
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-6">Confirm New Password</label>
+                        <div class="col-sm-10">
+                        <input type="password" class="form-control" formControlName="confirmNewPwd" >
+                        </div>
+                        <div *ngIf="fpGroup.get('confirmNewPwd')?.errors?.matching" style="color:red">Password doesn't match</div>
+                        </div>
+                        <div>
+                          <button style="margin-top: 20px;" class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                        
+                </form>
+              </div>
+           </div>
+            <div class="text-center" >
+              <button class="btn btn-danger" (click)="closeDialog()">Close</button>
+                    
+            </div>
+            <br/>
+          </div>
+        </div>
+      </div>
+   

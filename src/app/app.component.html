@@ -1,0 +1,27 @@
+<!--Welcome : {{title}}
+
+
+<br/>
+<button appHlight [style.width.px]="wt" [style.height.px]="ht" (click)="addCustomer()">Add Customer!</button>
+<br/>
+<input type="text" [(ngModel)]="title"/>
+
+<br/>
+<input type="checkbox" (change)="show()">Show Customer
+<div *ngIf="showCustomer">
+
+  {{customer.id}} {{customer.name}} {{customer.address}}
+</div>
+<br/>
+<h3>Home Component</h3>
+<app-home [message]="customer.name" (valueChange)="testOp($event)"></app-home>-->
+
+<ng-http-loader
+
+[debounceDelay]="100"
+[extraDuration]="300"
+[minDuration]="300"
+
+></ng-http-loader>
+  <router-outlet></router-outlet>
+  
