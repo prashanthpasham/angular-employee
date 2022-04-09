@@ -1,4 +1,4 @@
-FROM node:16.14.0 as build
+FROM node:12.14.1 as build
 #setting working directory
 WORKDIR /app
 RUN npm cache clean --force
@@ -16,6 +16,6 @@ WORKDIR /usr/share/nginx/html
 # Remove default nginx static assets
 RUN rm -rf ./*
 # Copy static assets from builder stage
-COPY --from=build /app/dist/angular-employee .
+COPY --from=build /app/dist/angular-project .
 # Containers run nginx with global directives and daemon off
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
