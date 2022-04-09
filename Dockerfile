@@ -1,9 +1,15 @@
-FROM node:14 as build
+FROM node:16.14.0 as build
+#setting working directory
 WORKDIR /app
-RUN npm install && npm run build
+RUN npm cache clean --force
+#add source code to docker folder
 COPY . .
+#install dependencies
+RUN npm install && npm run build 
+#-- --output-path=./dist/out
 
-#run in nginx
+
+# nginx state for serving content
 FROM nginx:alpine
 # Set working directory to nginx asset directory
 WORKDIR /usr/share/nginx/html
